@@ -1,0 +1,68 @@
+<div class="home-container">
+    <!-- Promotional Banner -->
+    <section class="promo-banner">
+      <h1>End of Year Sale!</h1>
+      <p>Get up to 50% off on select styles. Hurry, offer ends soon!</p>
+      <button class="shop-now-btn" (click)="OnClickfn()">Shop the Sale</button>
+    </section>
+  
+    <!-- Categories Section -->
+    <section class="categories">
+      <h2>Shop by Category</h2>
+      <div class="category-list">
+        <div class="category" *ngFor="let category of categories">
+          <img [src]="category.image" [alt]="category.name" />
+          <h3>{{ category.name }}</h3>
+        </div>
+      </div>
+    </section>
+  
+    <!-- About Us Section -->
+    <section class="about-us">
+      <h2>About Us</h2>
+      <p>
+        At Shoe Haven, we believe every step matters. We bring together style,
+        comfort, and durability to ensure your every move is extraordinary. From
+        casual to formal, we have something for everyone.
+      </p>
+    </section>
+  
+    <!-- Social Media Feed -->
+    <section class="social-feed">
+      <h2>Follow Us on Instagram</h2>
+      <div class="social-posts">
+        <div class="post" *ngFor="let post of socialPosts">
+          <img [src]="post.image" [alt]="'Post ' + post.id" />
+        </div>
+      </div>
+    </section>
+  
+    <!-- Quick Contact Form -->
+    <section class="contact-form">
+      <h2>Get in Touch</h2>
+      <form (ngSubmit)="submitContactForm()">
+        <input
+          type="text"
+          placeholder="Your Name"
+          [(ngModel)]="contact.name"
+          name="name"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          [(ngModel)]="contact.email"
+          name="email"
+          required
+        />
+        <textarea
+          placeholder="Your Message"
+          [(ngModel)]="contact.message"
+          name="message"
+          required
+        ></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+  </div>
+  <app-snackbar *ngIf="snackBarFlag"></app-snackbar>

@@ -1,0 +1,11 @@
+
+
+<div class="ekart--products--container">
+    <ng-container *ngFor="let item of products; let i = index">
+        <app-product 
+            [product] = "item"
+            (click)="SetSelectedProduct(item)"
+            >
+        </app-product>
+    </ng-container>
+</div>

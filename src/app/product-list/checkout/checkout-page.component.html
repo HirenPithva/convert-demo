@@ -1,0 +1,71 @@
+<div class="product-container">
+    <!-- Product Image -->
+    <div class="product-image">
+      <img [src]="'https://picsum.photos/200/300?random='+product?.id" alt="Adidas Velocity Stride">
+      <span class="badge" [ngClass]="{'in-stock': product?.is_in_inventory, 'out-of-stock': !product?.is_in_inventory}">
+        {{ product?.is_in_inventory ? 'In Stock' : 'Out of Stock' }}
+      </span>
+    </div>
+  
+    <!-- Product Details -->
+    <div class="product-details">
+      <h1>{{ product?.name }}</h1>
+      <p class="brand">{{ product?.brand }}</p>
+      <p class="description">{{ product?.description }}</p>
+      <p class="category"><strong>Category:</strong> {{ product?.category }}</p>
+      <p class="gender"><strong>Gender:</strong> {{ product?.gender }}</p>
+      <p class="price"><strong>Price:</strong> ${{ product?.price }}</p>
+      <p class="items-left" *ngIf="product?.is_in_inventory">
+        <strong>Items Left:</strong> {{ product?.items_left }}
+      </p>
+  
+      <!-- Star Ratings -->
+      <div class="rating">
+        <strong>Rating:</strong>
+        <span class="stars">
+          <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+            <i [class.filled]="i < 4" class="star">★</i>
+          </ng-container>
+        </span>
+      </div>
+  
+      <!-- Reviews -->
+      <div class="reviews">
+        <h3>Reviews:</h3>
+        <p>Great product! Highly recommend.</p>
+        <p>Comfortable and stylish.</p>
+      </div>
+  
+      <!-- Quantity Selector -->
+      <div class="quantity-selector">
+        <label for="quantity">Quantity:</label>
+        <select id="quantity">
+          <option *ngFor="let qty of [1, 2, 3, 4, 5]">{{ qty }}</option>
+        </select>
+      </div>
+  
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="buy-now" [disabled]="!product?.is_in_inventory" (click)="OnClickfn()">Buy Now</button>
+        <button class="wishlist-button">Add to Wishlist</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Social Media Sharing -->
+  <div class="social-share">
+    <button>Share on Facebook</button>
+    <button>Share on Twitter</button>
+  </div>
+<!--   
+  < Related Products Section 
+  <div class="related-products">
+    <h3>Related Products</h3>
+    <div class="product-card" *ngFor="let related of []">
+      <img [src]="related?.imageURL" alt="Related Product">
+      <p>{{ related?.name }}</p>
+    </div>
+  </div>
+   -->
+
+   <app-snackbar *ngIf="snackBarFlag"></app-snackbar>
